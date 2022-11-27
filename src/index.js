@@ -2,15 +2,25 @@
 const fs = require("node:fs");
 // Módulo de utilidad de ruta nativo de node, ayuda a construir rutas.
 const path = require("node:path");
-const { Client, Collection, Intents } = require("discord.js");
+const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const { token } = require("../config.json");
 
 // Creamos nueva instancia de cliente (bot)
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+});
 
 // Avisará cuando el bot esté listo
 client.once("ready", () => {
-  console.log("Ready!");
+  client.channels.cache.get("996074367651938375").send("Estoy conectado");
+  console.log(`Logged in as ${client.user.tag}`);
+});
+
+client.on("message", (message) => {
+  console.log("a");
+  client.channels.cache.get("996074367651938375").send("ok!");
+  if (message.content.startsWith("ok")) {
+  }
 });
 
 // Clase nativa de Javascript
@@ -30,13 +40,11 @@ for (const file of commandFiles) {
 
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
-
   const command = client.commands.get(interaction.commandName);
-
   if (!command) return;
 
   try {
-    await command.execute(interaction);
+    await command.execute(client, interaction);
   } catch (error) {
     console.error(error);
     await interaction.reply({

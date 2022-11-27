@@ -4,11 +4,12 @@ const {
   Client,
   CommandInteraction,
 } = require("discord.js");
+const ms = require("ms");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("user")
-    .setDescription("Replies with user info!"),
+    .setName("ping")
+    .setDescription("Ver la latencia y el tiempo de actividad del bot."),
   /**
    * @param {Client} client
    * @param {CommandInteraction} interaction
@@ -16,9 +17,8 @@ module.exports = {
   async execute(client, interaction) {
     const pingEmbed = await new EmbedBuilder()
       .setColor("Aqua")
-      .setTitle("Información de usuario")
       .setDescription(
-        `Tag: **${interaction.user.tag}**\nId: **${interaction.user.id}**`
+        `Latencia: **${client.ws.ping}**\nActividad: **${ms(client.uptime)}**`
       );
     await interaction.reply({ embeds: [pingEmbed] });
   },

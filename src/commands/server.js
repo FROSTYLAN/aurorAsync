@@ -1,14 +1,25 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const {
+  SlashCommandBuilder,
+  EmbedBuilder,
+  Client,
+  CommandInteraction,
+} = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("server")
-    .setDescription("Replies with server info!"),
-  async execute(interaction) {
-    await interaction.reply(`SERVER DATA
-    Server name: ${interaction.guild.name}
-    Total members: ${interaction.guild.memberCount}
-    Creation date: ${interaction.guild.createdAt}
-    Verification level: ${interaction.guild.verificationLevel}`);
+    .setDescription("Información del servidor"),
+  /**
+   * @param {Client} client
+   * @param {CommandInteraction} interaction
+   */
+  async execute(client, interaction) {
+    const pingEmbed = await new EmbedBuilder()
+      .setColor("Aqua")
+      .setTitle("Información del servidor")
+      .setDescription(
+        `Nombre del servidor: **${interaction.guild.name}**\nFecha de creación: **${interaction.guild.memberCount}**\nTotal de miembros: **${interaction.guild.createdAt}**`
+      );
+    await interaction.reply({ embeds: [pingEmbed] });
   },
 };
