@@ -18,7 +18,7 @@ module.exports = {
     const pingEmbed = await new EmbedBuilder()
       .setColor("Aqua")
       .setDescription(
-        `Latencia: **${client.ws.ping}**\nActividad: **${ms(client.uptime)}**`
+        `Latencia: **${client.ws.ping}ms**\nActividad: **${ms(client.uptime)}**`
       );
     await interaction.reply({ embeds: [pingEmbed] });
   },
