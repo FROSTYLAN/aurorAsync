@@ -4,6 +4,7 @@ const {
   Client,
   CommandInteraction,
 } = require("discord.js");
+const { defaultSuccessColor } = require("../../../config.json");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -13,9 +14,9 @@ module.exports = {
    * @param {Client} client
    * @param {CommandInteraction} interaction
    */
-  async execute(client, interaction) {
+  async run(client, interaction) {
     const pingEmbed = await new EmbedBuilder()
-      .setColor("Aqua")
+      .setColor(defaultSuccessColor)
       .setTitle("Información del servidor")
       .setDescription(
         `Nombre del servidor: **${interaction.guild.name}**\nFecha de creación: **${interaction.guild.memberCount}**\nTotal de miembros: **${interaction.guild.createdAt}**`

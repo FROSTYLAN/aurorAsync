@@ -7,6 +7,7 @@ const {
   Client,
   CommandInteraction,
 } = require("discord.js");
+const { defaultSuccessColor } = require("../../../config.json");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -19,12 +20,12 @@ module.exports = {
    * @param {Client} client
    * @param {CommandInteraction} interaction
    */
-  async execute(client, interaction) {
+  async run(client, interaction) {
     let user = interaction.options.getUser("user") || interaction.user;
     let userAvatar = user.displayAvatarURL({ size: 512 });
 
     const embed = await new EmbedBuilder()
-      .setColor("Aqua")
+      .setColor(defaultSuccessColor)
       .setTitle(`${user.tag}`)
       .setImage(`${userAvatar}`)
       .setTimestamp()

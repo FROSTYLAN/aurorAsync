@@ -5,6 +5,7 @@ const {
   CommandInteraction,
 } = require("discord.js");
 const ms = require("ms");
+const { defaultSuccessColor } = require("../../../config.json");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -14,9 +15,9 @@ module.exports = {
    * @param {Client} client
    * @param {CommandInteraction} interaction
    */
-  async execute(client, interaction) {
+  async run(client, interaction) {
     const pingEmbed = await new EmbedBuilder()
-      .setColor("Aqua")
+      .setColor(defaultSuccessColor)
       .setDescription(
         `Latencia: **${client.ws.ping}ms**\nActividad: **${ms(client.uptime)}**`
       );

@@ -8,6 +8,10 @@ const {
   CommandInteraction,
 } = require("discord.js");
 const axios = require("axios");
+const {
+  defaultSuccessColor,
+  defaultErrorColor,
+} = require("../../../config.json");
 
 module.exports = {
   data: new SlashCommandBuilder().setName("meme").setDescription("Meme random"),
@@ -15,13 +19,13 @@ module.exports = {
    * @param {Client} client
    * @param {CommandInteraction} interaction
    */
-  async execute(client, interaction) {
+  async run(client, interaction) {
     const url = "https://meme-api.herokuapp.com/gimme";
     axios
       .get(url)
       .then(async (res) => {
         const embed = new EmbedBuilder()
-          .setColor("Blurple")
+          .setColor(defaultSuccessColor)
           .setTitle(`${res.data.title}`)
           .addFields(
             {
@@ -51,8 +55,14 @@ module.exports = {
       })
       .catch(async (err) => {
         console.log(err);
+        const embedErr = new EmbedBuilder()
+          .setColor(defaultErrorColor)
+          .setTitle("Error")
+          .setDescription(
+            "Ocurrió un error mientras se ejecutaba este comando..."
+          );
         await interaction.reply({
-          content: "Ocurrió un error mientras se ejecutaba este comando...",
+          embeds: [embedErr],
           ephemeral: true,
         });
       });

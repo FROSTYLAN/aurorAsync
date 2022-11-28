@@ -6,7 +6,8 @@ const {
   Client,
   CommandInteraction,
 } = require("discord.js");
-const { tenor_api_key } = require("../../config.json");
+const { defaultErrorColor } = require("../../../config.json");
+const { tenor_api_key } = require("../../../config.json");
 const axios = require("axios");
 
 module.exports = {
@@ -23,8 +24,8 @@ module.exports = {
    * @param {Client} client
    * @param {CommandInteraction} interaction
    */
-  async execute(client, interaction) {
-    const searchQuery = interaction.options.getString("search_query");
+  async run(client, interaction) {
+    const searchQuery = interaction.options._hoistedOptions[0].value;
     const url = `https://tenor.googleapis.com/v2/search?q=${encodeURIComponent(
       searchQuery
     )}&key=${tenor_api_key}&limit=10`;
@@ -44,8 +45,14 @@ module.exports = {
       })
       .catch(async (err) => {
         console.log(err);
+        const embedErr = new EmbedBuilder()
+          .setColor(defaultErrorColor)
+          .setTitle("Error")
+          .setDescription(
+            "Ocurrió un error mientras se ejecutaba este comando..."
+          );
         await interaction.reply({
-          content: "Ocurrió un error mientras se ejecutaba este comando...",
+          embeds: [embedErr],
           ephemeral: true,
         });
       });
