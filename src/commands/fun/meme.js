@@ -19,7 +19,7 @@ module.exports = {
    * @param {Client} client
    * @param {CommandInteraction} interaction
    */
-  async run(client, interaction) {
+  async run(client, interaction, language) {
     const url = "https://meme-api.herokuapp.com/gimme";
     axios
       .get(url)
@@ -29,12 +29,18 @@ module.exports = {
           .setTitle(`${res.data.title}`)
           .addFields(
             {
-              name: "Autor",
+              name: `${client.languages.__({
+                phrase: "meme.author",
+                locale: language,
+              })}`,
               value: `${res.data.author}`,
               inline: true,
             },
             {
-              name: "Votos",
+              name: `${client.languages.__({
+                phrase: "meme.ups",
+                locale: language,
+              })}`,
               value: `${res.data.ups}`,
               inline: true,
             }
@@ -46,7 +52,12 @@ module.exports = {
 
         const row = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
-            .setLabel("Post Link")
+            .setLabel(
+              `${client.languages.__({
+                phrase: "meme.link",
+                locale: language,
+              })}`
+            )
             .setStyle(ButtonStyle.Link)
             .setURL(`${res.data.postLink}`)
         );

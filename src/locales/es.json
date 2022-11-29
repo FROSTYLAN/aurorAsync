@@ -1,0 +1,27 @@
+{
+	"utilities.errorEmbed": "Error",
+	"utilities.noInvitePerms": "Necesito el permiso de `crear invitaciones` para ejecutar este comando.",
+	"utilities.unexpectedError": "Ha ocurrido un error inesperado.",
+
+	"server.title": "Información del servidor", 
+	"server.name": "Nombre del servidor",
+	"server.created": "Fecha de creación",
+	"server.totalMembers": "Total de miembros",
+
+	"lang.noAdministrator": "No tienes permisos suficientes para ejecutar este comando.",
+	"lang.newLanguage": "Has seleccionado un nuevo lenguaje.",
+
+	"ping.latency": "Latencia", 
+	"ping.activity": "Tiempo de actividad",
+
+	"meme.author": "Autor",
+	"meme.ups": "Votos",
+	"meme.link": "Link del post",
+
+	"avatar.link": "Link del avatar",
+
+	"gif.link": "Link del GIF",
+	
+	"youtube.noChannel": "Necesitas estar en un canal de voz para ejecutar este comando.",
+	"youtube.loading": "Iniciando sesión en Youtube Together..."
+}

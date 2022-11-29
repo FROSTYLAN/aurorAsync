@@ -1,0 +1,28 @@
+{
+	"utilities.errorEmbed": "Error",
+	"utilities.noInvitePerms": "`Create invites` permission is needed to execute this command.",
+	"utilities.unexpectedError": "An unexpected error has occured.",
+
+	"server.title": "Server information", 
+	"server.name": "Server name",
+	"server.created": "Date created",
+	"server.totalMembers": "Total members",
+
+	"ping.latency": "Lantency", 
+	"ping.activity": "Activity",
+
+	"lang.noAdministrator": "You don't have enough permissions to execute this command.",
+	"lang.newLanguage": "You've selected a new language.",
+	
+	"meme.author": "Author",
+	"meme.ups": "Ups",
+	"meme.link": "Post link",
+
+	"avatar.link": "Avatar link",
+
+	"gif.link": "GIF link",
+
+	"youtube.noChannel": "You need to be on a voice channel in order to execute this command",
+	"youtube.loading": "Loading Youtube Together..."
+
+}

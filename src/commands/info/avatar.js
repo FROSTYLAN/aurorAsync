@@ -20,7 +20,7 @@ module.exports = {
    * @param {Client} client
    * @param {CommandInteraction} interaction
    */
-  async run(client, interaction) {
+  async run(client, interaction, language) {
     let user = interaction.options.getUser("user") || interaction.user;
     let userAvatar = user.displayAvatarURL({ size: 512 });
 
@@ -32,7 +32,9 @@ module.exports = {
       .setDescription(`Id: **${interaction.user.id}**`);
 
     const button = new ButtonBuilder()
-      .setLabel("Avatar Link")
+      .setLabel(
+        `${client.languages.__({ phrase: "avatar.link", locale: language })}`
+      )
       .setStyle(ButtonStyle.Link)
       .setURL(`${user.avatarURL({ size: 512 })}`);
 

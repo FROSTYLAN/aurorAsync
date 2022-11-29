@@ -24,7 +24,7 @@ module.exports = {
    * @param {Client} client
    * @param {CommandInteraction} interaction
    */
-  async run(client, interaction) {
+  async run(client, interaction, language) {
     const searchQuery = interaction.options._hoistedOptions[0].value;
     const url = `https://tenor.googleapis.com/v2/search?q=${encodeURIComponent(
       searchQuery
@@ -36,7 +36,9 @@ module.exports = {
 
         const row = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
-            .setLabel("GIF Link")
+            .setLabel(
+              `${client.languages.__({ phrase: "gif.link", locale: language })}`
+            )
             .setStyle(ButtonStyle.Link)
             .setURL(content)
         );
